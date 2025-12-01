@@ -38,3 +38,13 @@ jobs:
         with:
           name: python-build
           path: build_artifact.zip
+
+            - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t rishav-python-ci:latest .
+
+      - name: Run container tests
+        run: docker run --rm rishav-python-ci:latest
+
